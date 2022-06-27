@@ -16,6 +16,13 @@ class SearchBarPage {
         return $("li.wszystkie > p > a");
     }
 
+    async clickonSeeAllBooksBtn() {
+        const btn:WebdriverIO.Element = await this.seeAllBooksBtn;
+        await btn.waitForDisplayed();
+        await btn.scrollIntoView();
+        await btn.click();
+    }
+
     async suggestPopupisVisible() {
         const popup:WebdriverIO.Element = await this.suggestPopup;
         await popup.waitForDisplayed();

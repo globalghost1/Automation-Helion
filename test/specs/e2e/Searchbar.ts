@@ -1,7 +1,8 @@
 import GlobalPage from "../../pages/GlobalPage";
 import SearchbarPage from "../../pages/components/SearchbarPage";
-import {HelionHomeUrl} from "../../config/pagesUrl";
-import { searchPhrase } from "../../config/data";
+import SearchResultPage from "../../pages/SearchResultPage";
+import {HelionHomeUrl,SearchPageUrl} from "../../config/pagesUrl";
+import { searchPhrase, searchResultTitle } from "../../config/data";
 
 
 describe("E2E - Searchbar", async()=>{
@@ -19,6 +20,18 @@ describe("E2E - Searchbar", async()=>{
         await SearchbarPage.typeSearchPhrase(searchPhrase);
         await SearchbarPage.suggestPopupisVisible();
         
+    })
+
+    it("Should click on see all books button", async()=>{
+        await SearchbarPage.clickonSeeAllBooksBtn();
+        await expect(browser).toHaveUrl(SearchPageUrl);
+    })
+
+    it("Should verify visible corretly title and number of books", async()=> {
+        const title:string = await SearchResultPage.getPageTitle();
+        const numberOfBooks:number = await SearchResultPage.getNumberofBooks();
+        await expect(title).toContain(searchResultTitle);
+        await expect(numberOfBooks).toEqual(20);
     })
 })
 
