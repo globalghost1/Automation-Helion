@@ -12,6 +12,10 @@ class SearchBarPage {
         return $("form#szukanie div.suggest-list");
     }
 
+    get seeAllBooksBtn() {
+        return $("li.wszystkie > p > a");
+    }
+
     async suggestPopupisVisible() {
         const popup:WebdriverIO.Element = await this.suggestPopup;
         await popup.waitForDisplayed();
