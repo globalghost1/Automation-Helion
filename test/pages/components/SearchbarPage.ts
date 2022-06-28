@@ -16,6 +16,28 @@ class SearchBarPage {
         return $("li.wszystkie > p > a");
     }
 
+    get notFoundAlert() {
+        return $("div.not-found");
+    }
+
+    async getNotFoundAlertText() {
+        const alert:WebdriverIO.Element = await this.notFoundAlert
+        await alert.waitForDisplayed();
+        return await alert.getText();
+    }
+
+    async GetInputValue() {
+        const input:WebdriverIO.Element = await this.searchInput;
+        await input.waitForDisplayed();
+        return await input.getValue();
+    }
+
+    async clearSearchBar() {
+        const input:WebdriverIO.Element = await this.searchInput;
+        await input.waitForDisplayed();
+        await input.clearValue();
+    }
+
     async clickonSeeAllBooksBtn() {
         const btn:WebdriverIO.Element = await this.seeAllBooksBtn;
         await btn.waitForDisplayed();

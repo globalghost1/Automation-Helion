@@ -2,7 +2,7 @@ import GlobalPage from "../../pages/GlobalPage";
 import SearchbarPage from "../../pages/components/SearchbarPage";
 import SearchResultPage from "../../pages/SearchResultPage";
 import {HelionHomeUrl,SearchPageUrl} from "../../config/pagesUrl";
-import { searchPhrase, searchResultTitle } from "../../config/data";
+import { incorrectSeachPhrase, notFoundMessage, searchPhrase, searchResultTitle } from "../../config/data";
 
 
 describe("E2E - Searchbar", async()=>{
@@ -33,5 +33,21 @@ describe("E2E - Searchbar", async()=>{
         await expect(title).toContain(searchResultTitle);
         await expect(numberOfBooks).toEqual(20);
     })
+
+    it("Should clear input value", async()=>{
+        await SearchbarPage.clearSearchBar();
+        await expect (await SearchbarPage.GetInputValue()).toContain("");
+    })
+
+   it("Should type incorrect book name and verify alert", async()=> {
+       await SearchbarPage.typeSearchPhrase(incorrectSeachPhrase);
+       await SearchbarPage.clickOnSearchIcon();
+       await expect(await SearchbarPage.getNotFoundAlertText()).toContain(notFoundMessage);
+    })
+
+    it("Should clear input value and click on search icon", async() => {
+        
+    })
+
 })
 
