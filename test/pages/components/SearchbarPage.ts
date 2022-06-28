@@ -13,7 +13,7 @@ class SearchBarPage {
     }
 
     get seeAllBooksBtn() {
-        return $("li.wszystkie > p > a");
+        return $("li.wszystkie>p>a");
     }
 
     get notFoundAlert() {

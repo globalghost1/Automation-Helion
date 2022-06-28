@@ -59,10 +59,12 @@ export const config: Options.Testrunner = {
     
     suites: {
         debug: [
-            "./test/specs/e2e/Searchbar.ts"
+            "./test/specs/e2e/Product.ts"
         ],
         e2e: [
-            "./test/specs/e2e/Searchbar.ts"
+            "./test/specs/e2e/Searchbar.ts",
+            "./test/specs/e2e/Product.ts"
+
         ]
     },
     //

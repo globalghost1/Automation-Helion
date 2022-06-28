@@ -1,7 +1,7 @@
 import GlobalPage from "../../pages/GlobalPage";
 import SearchbarPage from "../../pages/components/SearchbarPage";
 import SearchResultPage from "../../pages/SearchResultPage";
-import {HelionHomeUrl,SearchPageUrl} from "../../config/pagesUrl";
+import {HelionHomeUrl,notFoundURL,SearchPageUrl} from "../../config/pagesUrl";
 import { incorrectSeachPhrase, notFoundMessage, searchPhrase, searchResultTitle } from "../../config/data";
 
 
@@ -46,7 +46,10 @@ describe("E2E - Searchbar", async()=>{
     })
 
     it("Should clear input value and click on search icon", async() => {
-        
+        await SearchbarPage.clearSearchBar();
+        await SearchbarPage.clickOnSearchIcon();
+        await expect(browser).toHaveUrl(notFoundURL);
+        await expect(await SearchbarPage.GetInputValue()).toContain(incorrectSeachPhrase);
     })
 
 })
